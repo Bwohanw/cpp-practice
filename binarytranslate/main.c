@@ -14,6 +14,20 @@ int binaryToDecimal(std::string input) {
     return sum;
 }
 
+int decimalToBase(unsigned int num, unsigned int base) {
+    unsigned int answer = 0;
+    //current decimal place we're at in the answer
+    unsigned int power = 1;
+    while (num != 0) {
+        unsigned int quotient = num / base;
+        unsigned int remainder = num - (base*quotient);
+        answer += remainder * power;
+        power *= 10;
+        num = quotient;
+    }
+    return answer;
+}
+
 
 std::string binaryToString(std::string data) {
 
@@ -26,6 +40,7 @@ std::string binaryToString(std::string data) {
 
 
 int main(int argc, char** argv) {
+    std::cout << decimalToBase(63, 2) << std::endl;
     if (argc <= 1) {
         std::cout << "please provide an argument" << std::endl;
         return 1;
